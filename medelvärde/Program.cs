@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace medelvärde
@@ -10,16 +11,19 @@ namespace medelvärde
     {
         static void Main(string[] args)
         {
-            Run();
-        }
-
-        static void Run()
-        {
-            Console.WriteLine("Skriv in ett heltal");
-            double number = int.Parse(Console.ReadLine());
-            Console.Clear();
-            Console.WriteLine("Medelvärdet är: " + Medelvärde(number));
-            Run();
+            bool run = true;
+            while (run == true)
+            {
+                Console.WriteLine("Skriv in ett heltal");
+                double number = int.Parse(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("Medelvärdet är: " + Medelvärde(number));
+                if (Console.ReadKey().Key == ConsoleKey.Escape)
+                {
+                    run = false;
+                }
+            }  
+            Environment.Exit(0);
         }
         
         static double Medelvärde(double number)
